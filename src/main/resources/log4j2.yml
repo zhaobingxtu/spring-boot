@@ -1,0 +1,26 @@
+Configutation:
+  status: info
+
+  Appenders:
+    Console:
+      name: CONSOLE
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"
+    RollingFile:
+      - name: APPLICATION
+        fileName: ../logs/spring-boot.log
+        filePattern: "../logs/$${date:yyyy-MM}/spring-boot-%d{yyyy-MM-dd}-%i.log.gz"
+        PatternLayout:
+          Pattern: "%d{yyyy-MM-dd HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"
+        policies:
+          TimeBasedTriggeringPolicy:
+            interval: 1
+            modulate: true
+
+  Loggers:
+      Root:
+        level: info
+        AppenderRef:
+          - ref: CONSOLE
+          - ref: APPLICATION
