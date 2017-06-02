@@ -19,8 +19,18 @@ Configutation:
             modulate: true
 
   Loggers:
-      Root:
+      Logger:
+        name: org.springframework
         level: info
+      Logger:
+        name: org.mybatis
+        level: debug
+      Logger:
+        name: org.apache.ibatis
+        level: debug
+
+      Root:
+        level: debug
         AppenderRef:
           - ref: CONSOLE
           - ref: APPLICATION

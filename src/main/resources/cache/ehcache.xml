@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache updateCheck="false" name="defaultCache">
+
+	<!-- 用户缓存 -->
+	<cache name="users"
+		   maxEntriesLocalHeap="200"
+		   timeToLiveSeconds="600">
+	</cache>
+
+</ehcache>
