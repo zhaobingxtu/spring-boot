@@ -6,13 +6,13 @@ Configutation:
       name: CONSOLE
       target: SYSTEM_OUT
       PatternLayout:
-        Pattern: "%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"
+        Pattern: "%d{HH:mm:ss.SSS} %-5level %class.%M(%L) - %msg%xEx%n"
     RollingFile:
       - name: APPLICATION
-        fileName: ../logs/spring-boot.log
-        filePattern: "../logs/$${date:yyyy-MM}/spring-boot-%d{yyyy-MM-dd}-%i.log.gz"
+        fileName: /logs/spring-boot.log
+        filePattern: "/logs/$${date:yyyy-MM}/spring-boot-%d{yyyy-MM-dd}-%i.log.gz"
         PatternLayout:
-          Pattern: "%d{yyyy-MM-dd HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"
+          Pattern: "%d{yyyy-MM-dd HH:mm:ss z} %-5level %class.%M(%L) - %msg%xEx%n"
         policies:
           TimeBasedTriggeringPolicy:
             interval: 1
@@ -23,14 +23,10 @@ Configutation:
         name: org.springframework
         level: info
       Logger:
-        name: org.mybatis
+        name: com.milton
         level: debug
-      Logger:
-        name: org.apache.ibatis
-        level: debug
-
       Root:
-        level: debug
+        level: info
         AppenderRef:
           - ref: CONSOLE
           - ref: APPLICATION

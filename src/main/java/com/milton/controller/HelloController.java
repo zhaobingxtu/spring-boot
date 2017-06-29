@@ -34,7 +34,7 @@ public class HelloController {
     private Environment env;
 
     @Autowired
-    private UserDao userService;
+    private UserDao userDao;
 
     @RequestMapping("/hello")
     public Object index(){
@@ -51,13 +51,13 @@ public class HelloController {
 
     @RequestMapping("/list")
     public Object userList(){
-        List<User> itemList = userService.getUserListByParams();
+        List<User> itemList = userDao.getUserListByParams();
         return itemList;
     }
 
     @RequestMapping("/user/{id}")
     public Object userQuery(@PathVariable int id){
-        User item = userService.getUserById(id);
+        User item = userDao.getUserById(id);
         return item;
     }
 }

@@ -7,9 +7,9 @@ server:
 spring:
   datasource:
     name: datasource-one
-    url: jdbc:mysql://120.76.155.219:3306/16hub?useUnicode=TRUE&characterEncoding=utf8&autoReconnect=true
-    username: ***
-    password: ***
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=TRUE&characterEncoding=utf8&autoReconnect=true&useSSL=false
+    username: root
+    password: 123456
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     initialSize: 5

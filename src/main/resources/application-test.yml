@@ -1,3 +1,37 @@
+#web服务器配置
 server:
-  port: 9091
-  contextpath: spring-boot-test
+  port: 9099
+  contextpath: spring-boot
+
+#数据源配置
+spring:
+  datasource:
+    name: datasource-one
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=TRUE&characterEncoding=utf8&autoReconnect=true&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,log4j2
+  #缓存配置
+  cache:
+    ehcache:
+      config: classpath:cache/ehcache.xml
+
+#MyBatis配置
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.milton.entity
