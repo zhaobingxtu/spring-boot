@@ -5,6 +5,9 @@ server:
 
 #数据源配置
 spring:
+  #服务名称
+  application:
+    name: spring-boot-service
   datasource:
     name: datasource-one
     url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=TRUE&characterEncoding=utf8&autoReconnect=true&useSSL=false
@@ -29,9 +32,15 @@ spring:
   cache:
     ehcache:
       config: classpath:cache/ehcache.xml
-  #服务名称
-  application:
-    name: spring-boot-service
+  #mongodb配置
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/test
+  #redis config
+  redis:
+    host: localhost
+    port: 6379
+    password:
 
 #MyBatis配置
 mybatis:
@@ -39,7 +48,7 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
   type-aliases-package: com.milton.entity
 
-#spring cloud 服务注册
+#spring cloud服务注册
 eureka:
   client:
     serviceUrl:

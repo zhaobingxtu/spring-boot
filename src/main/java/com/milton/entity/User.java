@@ -1,5 +1,7 @@
 package com.milton.entity;
 
+import org.springframework.data.annotation.Id;
+
 /**
  * @author milton.zhang
  * @description
@@ -7,8 +9,17 @@ package com.milton.entity;
  */
 public class User {
 
+    @Id
     private int id;
     private String loginname;
+
+    public User() {
+    }
+
+    public User(int id, String loginname) {
+        this.id = id;
+        this.loginname = loginname;
+    }
 
     public int getId() {
         return id;

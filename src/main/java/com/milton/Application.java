@@ -11,7 +11,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @MapperScan("com.milton.dao")
 @ServletComponentScan
 @EnableCaching
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 public class Application {
 
 	public static void main(String[] args) {
