@@ -29,9 +29,18 @@ spring:
   cache:
     ehcache:
       config: classpath:cache/ehcache.xml
+  #服务名称
+  application:
+    name: spring-boot-service
 
 #MyBatis配置
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
   type-aliases-package: com.milton.entity
+
+#spring cloud 服务注册
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:11011/eureka/
