@@ -48,8 +48,20 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
   type-aliases-package: com.milton.entity
 
+
 #spring cloud服务注册
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:11011/eureka/
+mapper:
+  mappers:
+    - com.milton.util.MyMapper
+  not-empty: false
+  identity: MYSQL
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql

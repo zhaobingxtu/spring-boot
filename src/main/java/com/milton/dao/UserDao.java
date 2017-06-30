@@ -1,6 +1,7 @@
 package com.milton.dao;
 
 import com.milton.entity.User;
+import com.milton.util.MyMapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -12,7 +13,7 @@ import java.util.List;
  * 测试Mybatis Dao
  */
 @CacheConfig(cacheNames = "users")
-public interface UserDao{
+public interface UserDao extends MyMapper<User>{
 
     //use xml config
     @Cacheable

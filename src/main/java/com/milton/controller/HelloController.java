@@ -92,4 +92,10 @@ public class HelloController {
         stringRedisTemplate.opsForValue().set(key, key);
         return true;
     }
+
+    @RequestMapping("/page")
+    public Object userListPage(){
+        List<User> itemList = userDao.selectAll();
+        return itemList;
+    }
 }
