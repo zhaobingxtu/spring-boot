@@ -21,7 +21,10 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.test.skip>true</maven.test.skip>
 		<java.version>1.8</java.version>
+		<source.version>1.8</source.version>
+		<target.version>1.8</target.version>
 		<druid.version>1.0.31</druid.version>
 		<mysql.version>5.1.42</mysql.version>
 	</properties>
@@ -160,6 +163,103 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<goals>
+					<goal>compile</goal>
+				</goals>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<source>${source.version}</source>
+					<target>${target.version}</target>
+					<compilerArgs>
+						<arg>-verbose</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>${maven.test.skip}</skip>
+					<forkMode>once</forkMode>
+					<argLine>-Dfile.encoding=UTF-8</argLine>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<!--<version>2.7</version>-->
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<!--<addMavenDescriptor>false</addMavenDescriptor>-->
+						<!--<manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>-->
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							<addClasspath>true</addClasspath>
+							<mainClass>com.configcenter.ConfigCenterApplication</mainClass>
+							<!--<classpathPrefix>lib/</classpathPrefix>-->
+							<!--classpathMavenRepositoryLayout>true</classpathMavenRepositoryLayout-->
+						</manifest>
+						<!-- 添加classpath缺少的内容-->
+						<manifestEntries>
+							<Class-Path>conf/ ./</Class-Path>
+						</manifestEntries>
+					</archive>
+					<excludes>
+                        <exclude>**/*.yml</exclude>
+                        <exclude>**/*.xml</exclude>
+                        <exclude>**/*.properties</exclude>
+                    </excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<descriptor>assembly/dist.xml</descriptor>
+					<!--<descriptor>assembly/dist_prod.xml</descriptor>-->
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

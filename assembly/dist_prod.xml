@@ -1,0 +1,26 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+    <id>dist</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <baseDirectory>${project.artifactId}</baseDirectory>
+    <files>
+        <file>
+            <source>${project.build.directory}/${project.build.finalName}.${project.packaging}</source>
+            <outputDirectory>/</outputDirectory>
+            <fileMode>0664</fileMode>
+        </file>
+        <file>
+            <source>assembly/bin/run.sh</source>
+            <outputDirectory>bin/</outputDirectory>
+            <fileMode>0755</fileMode>
+        </file>
+        <file>
+            <source>${project.basedir}/src/main/resources/application-prod.yml</source>
+            <outputDirectory>conf/</outputDirectory>
+            <destName>application.yml</destName>
+        </file>
+    </files>
+</assembly>
