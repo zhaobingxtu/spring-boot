@@ -1,6 +1,6 @@
 package com.milton.aspect;
 
-import com.alibaba.fastjson.JSON;
+import com.milton.util.JacksonUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
@@ -29,7 +29,8 @@ public class WebLogAspect {
 
     //定义切入点 该包下的所有函数
     @Pointcut("execution(public * com.milton.controller..*.*(..))")
-    public void webLog(){}
+    public void webLog() {
+    }
 
     @Before("webLog()")
     public void doBefore(JoinPoint joinPoint) throws Throwable {
@@ -49,7 +50,7 @@ public class WebLogAspect {
     @AfterReturning(returning = "ret", pointcut = "webLog()")
     public void doAfterReturning(Object ret) throws Throwable {
         // 处理完请求，返回内容
-        logger.info("AOP RESPONSE : " + JSON.toJSONString(ret));
+        logger.info("AOP RESPONSE : " + JacksonUtils.obj2json(ret));
         logger.info("AOP SPEND TIME : {}ms", (System.currentTimeMillis() - startTime.get()));
     }
 }

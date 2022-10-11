@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,7 +47,7 @@ public class HelloController {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-    @RequestMapping("/hello")
+    @GetMapping("/hello")
     public Object index(){
         //log4j2 test
         logger.info("test log4j2 params {} {}", "param1", "param2");

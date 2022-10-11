@@ -1,7 +1,26 @@
 #web服务器配置
 server:
   port: 9099
-  contextpath: spring-boot
+  servlet:
+    context-path: /spring-boot
+
+#http配置
+http-client:
+  read-timeout: 120000
+
+#日志配置
+logging:
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${logging.file.path}/${spring.application.name}/logs/%d{yyyy-MM-dd}.%i.log.zip
+      max-history: 100
+      max-file-size: 100MB
+  pattern:
+    console: "%date|%thread|%X{ID}|%5level|%logger{50}:%line|%msg%n"
+    file: "%date|%thread|%X{ID}|%5level|%logger{50}:%line|%msg%n"
+  file:
+    name: ${logging.file.path}/${spring.application.name}/logs/${spring.application.name}.log
+    path: ${LOG_PATH:/app}
 
 #数据源配置
 spring:
@@ -33,9 +52,9 @@ spring:
     ehcache:
       config: classpath:cache/ehcache.xml
   #mongodb配置
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/test
+#  data:
+#    mongodb:
+#      uri: mongodb://localhost:27017/test
   #redis config
   redis:
     host: localhost
