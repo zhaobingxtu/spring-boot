@@ -1,6 +1,7 @@
 package com.milton;
 
 import com.milton.designpattern.chain.ChainUseService;
+import com.milton.designpattern.observer.ObserverUseServer;
 import com.milton.designpattern.strategy.StrategyUseService;
 import com.milton.designpattern.templatemethod.TemplateMethodUseService;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,9 @@ public class ApplicationTests {
 
     @Resource
     TemplateMethodUseService templateMethodUseService;
+
+    @Resource
+    ObserverUseServer observerUseServer;
 
     /**
      * 设计模式-策略模式
@@ -42,5 +46,13 @@ public class ApplicationTests {
     public void designPatternTemplateMethodTest() {
         templateMethodUseService.cookPotato();
         templateMethodUseService.cookTomato();
+    }
+
+    /**
+     * 设计模式-观察者模式
+     */
+    @Test
+    public void designPatternObserverTest() {
+        observerUseServer.mouseGoOut();
     }
 }
