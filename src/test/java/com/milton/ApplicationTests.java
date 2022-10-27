@@ -2,6 +2,7 @@ package com.milton;
 
 import com.milton.designpattern.chain.ChainUseService;
 import com.milton.designpattern.strategy.StrategyUseService;
+import com.milton.designpattern.templatemethod.TemplateMethodUseService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -14,6 +15,9 @@ public class ApplicationTests {
 
     @Resource
     ChainUseService chainUseService;
+
+    @Resource
+    TemplateMethodUseService templateMethodUseService;
 
     /**
      * 设计模式-策略模式
@@ -31,4 +35,12 @@ public class ApplicationTests {
         chainUseService.execChain("test");
     }
 
+    /**
+     * 设计模式-模板方法模式
+     */
+    @Test
+    public void designPatternTemplateMethodTest() {
+        templateMethodUseService.cookPotato();
+        templateMethodUseService.cookTomato();
+    }
 }

@@ -1,9 +1,9 @@
 package com.milton.designpattern.chain;
 
 /**
- * 设计模式-责任连模式抽象接口
+ * 设计模式-责任连模式抽象类
  */
-public class ChainAbstractHandler {
+public abstract class ChainAbstractHandler {
 
     /**
      * 责任链中的下一个对象
