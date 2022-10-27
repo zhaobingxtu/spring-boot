@@ -48,7 +48,7 @@ public class HelloController {
     private StringRedisTemplate stringRedisTemplate;
 
     @GetMapping("/hello")
-    public Object index(){
+    public Object index() {
         //log4j2 test
         logger.info("test log4j2 params {} {}", "param1", "param2");
 
@@ -61,41 +61,41 @@ public class HelloController {
     }
 
     @RequestMapping("/list")
-    public Object userList(){
+    public Object userList() {
         List<User> itemList = userDao.getUserListByParams();
         return itemList;
     }
 
     @RequestMapping("/user/{id}")
-    public Object userQuery(@PathVariable int id){
+    public Object userQuery(@PathVariable int id) {
         User item = userDao.getUserById(id);
         return item;
     }
 
     @RequestMapping("/mongo/list")
-    public Object userListFromMongo(){
+    public Object userListFromMongo() {
         return userMongoRepository.findAll();
     }
 
     @RequestMapping("/mongo/save/{id}")
-    public Object saveUserByMongo(@PathVariable int id){
-        userMongoRepository.save(new User(id, "milton"+id));
+    public Object saveUserByMongo(@PathVariable int id) {
+        userMongoRepository.save(new User(id, "milton" + id));
         return userMongoRepository.findAll();
     }
 
     @RequestMapping("/redis/get/{key}")
-    public Object redisGet(@PathVariable String key){
+    public Object redisGet(@PathVariable String key) {
         return stringRedisTemplate.opsForValue().get(key);
     }
 
     @RequestMapping("/redis/set/{key}")
-    public Object redisSet(@PathVariable String key){
+    public Object redisSet(@PathVariable String key) {
         stringRedisTemplate.opsForValue().set(key, key);
         return true;
     }
 
     @RequestMapping("/page")
-    public Object userListPage(){
+    public Object userListPage() {
         List<User> itemList = userDao.selectAll();
         return itemList;
     }
