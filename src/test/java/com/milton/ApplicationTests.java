@@ -4,7 +4,11 @@ import com.milton.designpattern.chain.ChainUseService;
 import com.milton.designpattern.observer.ObserverUseServer;
 import com.milton.designpattern.strategy.StrategyUseService;
 import com.milton.designpattern.templatemethod.TemplateMethodUseService;
+import com.milton.entity.User;
+import com.milton.entity.UserDTO;
+import com.milton.entity.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
+import org.mapstruct.factory.Mappers;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
@@ -54,5 +58,12 @@ public class ApplicationTests {
     @Test
     public void designPatternObserverTest() {
         observerUseServer.mouseGoOut();
+    }
+
+    @Test
+    public void mapStructTest() {
+        User user = new User(1, "zhangsan");
+        UserDTO userDTO = UserMapper.INSTANCE.userToUserDTO(user);
+        System.out.println(userDTO);
     }
 }

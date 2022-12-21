@@ -1,5 +1,8 @@
 package com.milton.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.Table;
@@ -9,34 +12,13 @@ import javax.persistence.Table;
  * @description
  * @date 2017-05-22 17:34
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "t_user")
 public class User {
 
     @Id
     private int id;
     private String loginname;
-
-    public User() {
-    }
-
-    public User(int id, String loginname) {
-        this.id = id;
-        this.loginname = loginname;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getLoginname() {
-        return loginname;
-    }
-
-    public void setLoginname(String loginname) {
-        this.loginname = loginname;
-    }
 }
